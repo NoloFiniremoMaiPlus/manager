@@ -1,13 +1,28 @@
 <script>
+	let username = ''
+	let password = ''
+	let result = null
 	
+	async function doPost () {
+		const res = await fetch('https://httpbin.org/post', {
+			method: 'POST',
+			body: JSON.stringify({
+				username,
+				password
+			})
+		})
+		
+		const json = await res.json()
+		result = JSON.stringify(json)
+	}
 </script>
 <body>
 	<h1>NoloNolo</h1>
 	<h2>Manager login</h2>
 	<div>
-		<p>Username:</p><input type="text">
-		<p>Password:</p><input type="text">
-		<button onclick="">Login</button>
+		<p>Username:</p><input bind:value={username}/>
+		<p>Password:</p><input bind:value={password}/>
+		<button type="button" on:click={doPost}>Login</button>
 	</div>
 </body>
 
