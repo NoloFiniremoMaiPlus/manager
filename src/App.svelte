@@ -3,7 +3,6 @@
 	let email = "" //manager@example.com
 	let password = "" //Managerpassword1
 	let result = null
-	
 	async function doPost () {
 		console.log(JSON.stringify({email,password}))
 		const res = await fetch(api+'/auth/login', { 
@@ -20,19 +19,21 @@
 		const json = await res.json()
 		result = JSON.stringify(json)
 	}
+	//let tokens = [localStorage.getItem(),localStorage.getItem()]
 </script>
-<body>
+<form>
 	<h1>NoloNolo</h1>
 	<h2>Manager login</h2>
 	<div>
 		<p>Email:</p><input bind:value={email} type="text"/>
 		<p>Password:</p><input bind:value={password} type="password"/>
 		<button type="button" on:click={doPost}>Login</button>
+		<p>{result}</p>
 	</div>
-</body>
+</form>
 
 <style>
-	body{
+	form{
 		display: flex;
 		flex-direction: column;
 		align-items: center;
