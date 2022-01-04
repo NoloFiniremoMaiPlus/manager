@@ -1,16 +1,17 @@
 <script>
-	export let localhost;
+	export let api;
 	let email = "" //manager@example.com
 	let password = "" //Managerpassword1
 	let result = null
 	
 	async function doPost () {
-		console.log(JSON.stringify({
-				email,
-				password
-			}))
-		const res = await fetch(localhost+'/auth/login', {
+		console.log(JSON.stringify({email,password}))
+		const res = await fetch(api+'/auth/login', { 
 			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+      			'Content-Type': 'application/json'
+			},
 			body: JSON.stringify({
 				email,
 				password
@@ -27,12 +28,6 @@
 		<p>Email:</p><input bind:value={email} type="text"/>
 		<p>Password:</p><input bind:value={password} type="password"/>
 		<button type="button" on:click={doPost}>Login</button>
-		<p>
-			Result:
-		</p>
-		<pre>
-		{result}
-		</pre>
 	</div>
 </body>
 

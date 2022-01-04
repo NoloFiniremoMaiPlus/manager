@@ -3,7 +3,7 @@ import App from './App.svelte';
 const app = new App({
 	target: document.body,
 	props: {
-		localhost: 'https://192.168.178.65:8443/v1'
+		api: 'https://192.168.178.65:8443/v1'
 	}
 });
 
