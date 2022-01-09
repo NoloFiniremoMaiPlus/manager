@@ -1,71 +1,64 @@
 <script>
-	export let api;
-	let email = "" //manager@example.com
-	let password = "" //Managerpassword1
-	let result = null
-	async function doPost () {
-		console.log(JSON.stringify({email,password}))
-		const res = await fetch(api+'/auth/login', { 
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-      			'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				email,
-				password
-			})
-		})
-		const json = await res.json()
-		result = JSON.stringify(json)
-	}
-	//let tokens = [localStorage.getItem(),localStorage.getItem()]
+	import { Router, Route, link } from "svelte-navigator"
+	import Login from "./login.svelte"
+	
 </script>
-<form>
-	<h1>NoloNolo</h1>
-	<h2>Manager login</h2>
-	<div>
-		<p>Email:</p><input bind:value={email} type="text"/>
-		<p>Password:</p><input bind:value={password} type="password"/>
-		<button type="button" on:click={doPost}>Login</button>
-		<p>{result}</p>
-	</div>
-</form>
 
+<Router>
+	<header>
+		<a href='/' class='link' use:link>Clienti</a> <!--<Link class="link" to="/">Clienti</Link>-->
+		<a href='/' class='link' use:link>Inventario</a>
+		<a href='/' class='link' use:link>Noleggi Attivi</a>
+		<a href='/' class='link' use:link>Noleggi Conclusi</a>
+		<a href='/' class='link' use:link>Dipendenti</a>
+		<a href='login' class='logbutton' use:link>LogIn</a> <!--<Link class="link" to="login">LOGIN</Link> -->
+		<a href='/' class='outbutton' use:link>LogOut</a>
+	</header>
+	<main>
+		<Route path="login">
+			<Login />
+		</Route>
+	</main>
+</Router>
 <style>
-	form{
+	header{
 		display: flex;
-		flex-direction: column;
-		align-items: center;
+		flex-direction: row;
+		height: 5%;
+		background-color:white;
+		border-bottom: 4px solid black; /*testing*/
 	}
-	h1{
-		font-size: 4rem;
-		text-align: center;
-		color: #5AEAFB;
+	.link{
+		color: black;
+		padding: 0.5% 0.5%;
 	}
-	h2{
-		font-size: 3rem;
-		text-align: center;
-		color: #5AEAFB;
+	.link:hover{
+		background-color: darkgrey;
+		text-decoration: none;
 	}
-	div{
-		width: 50%;
-		display: flex;
-		flex-direction: column;
-  		border: 3px solid #b7e0f4;
-		  border-radius: 2rem;
-		padding: 1em;
-	}
-	p{
-		font-weight: bold;
-		text-align: center;
-	}
-	button{
-		font-weight: bold;
-		color: white;
+	.logbutton{
+		margin-left: auto;
+		display: block;
+		padding: 0.5% 0.5%;
+		color: black;
 		background-color:#5AEAFB; /*per il logout colore-> #C85662*/
 		border:none;
-		border-radius: 3px;
+	}
+	.logbutton:hover{
+		text-decoration: none;
+		background-color: #3aa5b1;
+	}
+	.outbutton{
+		margin-left: auto;
+		display: none;
+		padding: 0.5% 0.5%;
+		color: black;
+		background-color: #C85662;
+		border:none;
+	}
+	.outbutton:hover{
+		text-decoration: none;
+		background-color: #ff1b31;
 	}
 
 </style>
