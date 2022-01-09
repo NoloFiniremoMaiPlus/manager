@@ -1,7 +1,28 @@
 <script>
 	import { Router, Route, link } from "svelte-navigator"
 	import Login from "./login.svelte"
-	
+	import {api} from "./store.js"
+
+	async function LogOut(){
+		const res = await fetch(api+'/auth/logout', { 
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+      			'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				refreshToken: localStorage.getItem("refreshToken")
+			})
+		})
+		console.log(res.status)
+		if(res.statu=204){
+			localStorage.clear()
+			location.reload()
+		}else{
+			window.alert("Errore durante il logout " + res.status + " " + res.statusText)
+		}
+		
+	}
 </script>
 
 <Router>
@@ -11,8 +32,11 @@
 		<a href='/' class='link' use:link>Noleggi Attivi</a>
 		<a href='/' class='link' use:link>Noleggi Conclusi</a>
 		<a href='/' class='link' use:link>Dipendenti</a>
-		<a href='login' class='logbutton' use:link>LogIn</a> <!--<Link class="link" to="login">LOGIN</Link> -->
-		<a href='/' class='outbutton' use:link>LogOut</a>
+		{#if localStorage.getItem("id")==undefined}
+		<a href='login' class='logbutton' use:link id="logIn">LogIn</a> <!--<Link class="link" to="login">LOGIN</Link> -->
+		{:else}
+		<a href='/' class='outbutton' use:link id="logOut" on:click="{LogOut}">LogOut</a>
+		{/if}
 	</header>
 	<main>
 		<Route path="login">
@@ -50,7 +74,7 @@
 	}
 	.outbutton{
 		margin-left: auto;
-		display: none;
+		display: block;
 		padding: 0.5% 0.5%;
 		color: black;
 		background-color: #C85662;

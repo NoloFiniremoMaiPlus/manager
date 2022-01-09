@@ -1,9 +1,20 @@
 <script>
     import {user} from "./store.js"
-    let api = 'https://192.168.1.119:8443/v1'
+    import {api} from "./store.js"
 	let email = "" //manager@example.com
 	let password = "" //Managerpassword1
 	let result = ""
+	function setStore(){
+    if(user.id!=null){
+        localStorage.setItem("id",user.id)
+        localStorage.setItem("username",user.username)
+        localStorage.setItem("email",user.email)
+        localStorage.setItem("accessToken",user.accessToken)
+        localStorage.setItem("refreshToken",user.refreshToken)
+        localStorage.setItem("expiresAccess",user.expiresAccess)
+        localStorage.setItem("expiresRefresh",user.expiresRefresh)
+    }
+}
 	async function doPost () {
 		console.log(JSON.stringify({email,password}))
 		const res = await fetch(api+'/auth/login', { 
@@ -29,7 +40,8 @@
             user.expiresAccess = json.tokens.access.expires
             user.refreshToken = json.tokens.refresh.token
             user.expiresRefresh = json.tokens.refresh.expires
-            console.log(user)
+			setStore()
+			location.replace("/")
         }else{
             result = res.statusText
         }
