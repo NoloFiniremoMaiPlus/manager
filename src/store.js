@@ -5,6 +5,7 @@ export const user =writable({
     id:"",
     username: "",
     email: "",
+    role: "",
     accessToken: "",
     refreshToken: "",
     expiresAccess: "",

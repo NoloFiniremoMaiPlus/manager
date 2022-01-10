@@ -1,19 +1,21 @@
 <script>
     import {user} from "./store.js"
+	import {navigate} from "svelte-navigator"
     import {api} from "./store.js"
 	let email = "" //manager@example.com
 	let password = "" //Managerpassword1
 	let result = ""
 	function setStore(){
-    if(user.id!=null){
-        localStorage.setItem("id",user.id)
-        localStorage.setItem("username",user.username)
-        localStorage.setItem("email",user.email)
-        localStorage.setItem("accessToken",user.accessToken)
-        localStorage.setItem("refreshToken",user.refreshToken)
-        localStorage.setItem("expiresAccess",user.expiresAccess)
-        localStorage.setItem("expiresRefresh",user.expiresRefresh)
-    }
+		if(user.id!=null){
+			localStorage.setItem("id",user.id)
+			localStorage.setItem("username",user.username)
+			localStorage.setItem("email",user.email)
+			localStorage.setItem("accessToken",user.accessToken)
+			localStorage.setItem("refreshToken",user.refreshToken)
+			localStorage.setItem("expiresAccess",user.expiresAccess)
+			localStorage.setItem("expiresRefresh",user.expiresRefresh)
+			localStorage.setItem("role",user.role)
+		}
 }
 	async function doPost () {
 		console.log(JSON.stringify({email,password}))
@@ -40,13 +42,15 @@
             user.expiresAccess = json.tokens.access.expires
             user.refreshToken = json.tokens.refresh.token
             user.expiresRefresh = json.tokens.refresh.expires
+			user.role = json.user.role
 			setStore()
-			location.replace("/")
+			navigate("/")
+			location.reload()
         }else{
             result = res.statusText
         }
 	}
-	//let tokens = [localStorage.getItem(),localStorage.getItem()]
+	
 </script>
 <form>
     <h1>NoloNolo</h1>
