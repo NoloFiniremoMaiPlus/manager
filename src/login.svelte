@@ -1,7 +1,6 @@
 <script>
-    import {user} from "./store.js"
+    import {user, api} from "./store.js"
 	import {navigate} from "svelte-navigator"
-    import {api} from "./store.js"
 	let email = "" //manager@example.com
 	let password = "" //Managerpassword1
 	let result = ""
