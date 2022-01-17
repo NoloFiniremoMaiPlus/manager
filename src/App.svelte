@@ -1,13 +1,9 @@
 <script>
 	import { Router, Route, link, navigate } from "svelte-navigator"
 	import Login from "./login.svelte"
-	import Logout from "./logout.svelte";
-	import Clienti from "./clienti.svelte"
-	import Inventario from "./inventario.svelte"
-	import Noleggi from "./noleggi.svelte"
-	import Dipendenti from "./dipendenti.svelte"
+	import Logout from "./logout.svelte"
 	import Stats from "./statistiche.svelte"
-	
+	import Users from "./users.svelte"
 	function home(){
 		navigate("/")
 		location.reload()
@@ -22,10 +18,11 @@
 		{#if localStorage.getItem("id")!=undefined && localStorage.getItem("role")=="manager"}
 		<p class="accName">Welcome {localStorage.getItem("username")}!</p>
 		<a href='statistiche' class='link' use:link>Statistiche</a>
-		<a href='clienti' class='link' use:link>Clienti</a>
-		<a href='Dipendenti' class='link' use:link>Dipendenti</a>
-		<a href='Inventario' class='link' use:link>Inventario</a>
-		<a href='Noleggi' class='link' use:link>Noleggi</a>
+		<a href='users' class='link' use:link>Gestione Utenti</a>
+		<a href='/' class='link'>BackOffice</a>
+		<!--
+			CENTRARE I QUESTI 3 <a> 
+		-->
 		<a href='logout' class='outbutton' use:link id="logOut">LogOut</a>
 		{:else}
 		{#if localStorage.getItem("id")!=undefined && localStorage.getItem("role")!="manager"}
@@ -40,32 +37,18 @@
 		<Route path="login">
 			<Login />
 		</Route>
-
-		<Route path="clienti">
-			<Clienti />
-		</Route>
-
+		
 		<Route path="statistiche">
 			<Stats />
 		</Route>
 
-		<Route path="Inventario">
-			<Inventario />
-		</Route>
-		
-		<Route path="Noleggi">
-			<Noleggi />
-		</Route>
-
-		
-		<Route path="Dipendenti">
-			<Dipendenti />
+		<Route path="users">
+			<Users />
 		</Route>
 		
 		<Route path="logout">
 			<Logout />
 		</Route>
-
 		
 	</main>
 </Router>
@@ -86,6 +69,7 @@
 		align-self: center;
 		color: black;
 		padding: 0.5% 0.5%;
+		margin: 0% 1%;
 	}
 	.link:hover{
 		border-radius: 10%;
