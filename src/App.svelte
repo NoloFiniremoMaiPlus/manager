@@ -29,7 +29,8 @@
 		<a href='logout' class='outbutton' use:link id="logOut">LogOut</a>
 		{:else}
 		{#if localStorage.getItem("id")!=undefined && localStorage.getItem("role")!="manager"}
-		<p>LogIn effettuato con un account non manager.</p>
+		<p class="accName">LogIn effettuato con un account non manager.</p>
+		<a href='logout' class='outbutton' use:link id="logOut">LogOut</a>
 		{/if}
 		<a href='login' class='logbutton' use:link id="logIn">LogIn</a>
 		{/if}
