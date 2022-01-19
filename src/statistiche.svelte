@@ -9,7 +9,7 @@
 
 	const foucus = useFocus(); //accessibility
     
-    async function getAdmins(){
+    async function RevenueByAdmin(){
         const res = await fetch(api+'/users', { 
 			method: 'GET',
 			headers: {
@@ -27,54 +27,47 @@
             usernames.push(print[i].username)
         }
         console.log(usernames)
-        return usernames;
-    }
-    function doChart(){
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+        console.log(typeof usernames)
+        //return usernames;
+        const ctx1 = document.getElementById('adminRevenue').getContext('2d');
+        const ctx2 = document.getElementById('adminRentals').getContext('2d');
+        const adminsRevenue = new Chart(ctx1, {
+            type: 'bar',
+            data:{
+                labels: usernames,
+                datasets:[{
+                    label: 'Revenue by Admin',
+                    data:[10,5,3,1]
+                }]
+            },
+            options:{
+                responsive: false
             }
-        }
-});
+        })
+        const adminRentals = new Chart(ctx2, {
+            type: 'bar',
+            data:{
+                labels: usernames,
+                datasets:[{
+                    label: 'Revenue by Admin',
+                    data:[10,5,3,1]
+                }]
+            },
+            options:{
+                responsive: false
+            }
+        })
     }
 </script>
 <div class="divButtons" use:foucus>
-    <button class="selettori" on:click={doChart}>doChart</button> <!--Clienti-->
-    <button class="selettori" on:click={getAdmins}>getAdmins</button> <!--Dipendenti-->
+    <button class="selettori" >doChart</button> <!--Clienti-->
+    <button class="selettori" on:click={RevenueByAdmin}>getAdmins</button> <!--Dipendenti-->
     <button class="selettori">Prodotti</button>
     <button class="selettori">Noleggi</button>
 </div>
-<div>
-    <canvas id="myChart" width="400" height="400"></canvas>
+<div class="grafici">
+    <canvas id="adminRevenue" width="400" height="400"></canvas>
+    <canvas id="adminRentals" width="400" height="400"></canvas>
 </div>
 <style>
     .divButtons{
@@ -92,6 +85,15 @@
     }
     .selettori:hover{
         background-color: lightskyblue;
+    }
+    .grafici{
+        margin-top: 5%;
+        width: 100%;
+        height: 40%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
     
 
