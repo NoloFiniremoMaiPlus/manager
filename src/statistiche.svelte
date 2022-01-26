@@ -11,6 +11,13 @@
 
 	const foucus = useFocus(); //accessibility
 
+    function resetGraph(){
+
+        let grafici=document.getElementsByClassName("graph")
+        for(let i=0;i<grafici.length;i++){
+            grafici[i].style.display="none"
+        }
+    }
     async function getUsers(){
         const res = await fetch(api+'/users', { 
 			method: 'GET',
@@ -38,6 +45,9 @@
     }
 
     async function RevenueByAdmin(){    
+
+        resetGraph()
+        
         let rentals = await getRentals()
         console.log(rentals)
 
@@ -68,8 +78,11 @@
         console.log(typeof usernames)
         
 
-        const ctx1 = document.getElementById('Rentals').getContext('2d');
-        const ctx2 = document.getElementById('Revenue').getContext('2d');
+        const ctx1 = document.getElementById('adminRentals').getContext('2d');
+        const ctx2 = document.getElementById('adminRevenue').getContext('2d');
+
+        document.getElementById("adminRentals").style.display="block"
+        document.getElementById("adminRevenue").style.display="block"
        
         const adminsRentals = new Chart(ctx1, {
             type: 'bar',
@@ -133,7 +146,10 @@
         })
     }
 
-    async function RevenueByUsers(){    
+    async function RevenueByUsers(){   
+        
+        resetGraph()
+        
         let rentals = await getRentals()
         console.log(rentals)
 
@@ -164,8 +180,11 @@
         console.log(typeof usernames)
         
 
-        const ctx1 = document.getElementById('Rentals').getContext('2d');
-        const ctx2 = document.getElementById('Revenue').getContext('2d');
+        const ctx1 = document.getElementById('userRentals').getContext('2d');
+        const ctx2 = document.getElementById('userRevenue').getContext('2d');
+
+        document.getElementById("userRentals").style.display="block"
+        document.getElementById("userRevenue").style.display="block"
        
         const adminsRentals = new Chart(ctx1, {
             type: 'bar',
@@ -237,8 +256,10 @@
     <button class="selettori">Noleggi</button>
 </div>
 <div class="grafici">
-    <canvas id="Rentals" width="400" height="400"></canvas>
-    <canvas id="Revenue" width="400" height="400"></canvas>
+    <canvas class="graph" id="adminRentals" width="400" height="400"></canvas>
+    <canvas class="graph" id="adminRevenue" width="400" height="400"></canvas>
+    <canvas class="graph" id="userRentals" width="400" height="400"></canvas>
+    <canvas class="graph" id="userRevenue" width="400" height="400"></canvas>
 </div>
 <style>
     .divButtons{
