@@ -7,6 +7,8 @@
     import { useFocus, Router, Route, link, navigate } from "svelte-navigator";
     import Chart from 'chart.js/auto';
 
+    
+
 	const foucus = useFocus(); //accessibility
 
     async function getUsers(){
@@ -35,35 +37,39 @@
         return json.results
     }
 
-    async function RevenueByAdmin(){
+    async function RevenueByAdmin(){    
         let rentals = await getRentals()
         console.log(rentals)
-        
+
         let users = await getUsers()
         console.log(users)
         let admins = users.results.filter((user) => user.role != "user")
 
         let values = []
+        let revenue = []
         for(let i=0;i<admins.length;i++){
             values[i]=0
+            revenue[i]=0
         }
         let usernames = []
-
+        let prezzoFinale = 0
         for(let i=0;i<admins.length;i++){
             usernames.push(admins[i].username)
             for(let j=0;j<rentals.length;j++){
                 if(admins[i].username==rentals[j].resp.username){
+                    prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) + Number(rentals[j].surcharge.$numberDecimal)
                     values[i]++
+                    revenue[i]=revenue[i]+prezzoFinale //price-sconto-loyalty+surcharge
                 }
             }
         }
         console.log(values)
         console.log(usernames)
         console.log(typeof usernames)
-        //return usernames;
+        
 
-        const ctx1 = document.getElementById('adminRentals').getContext('2d');
-        const ctx2 = document.getElementById('adminRevenue').getContext('2d');
+        const ctx1 = document.getElementById('Rentals').getContext('2d');
+        const ctx2 = document.getElementById('Revenue').getContext('2d');
        
         const adminsRentals = new Chart(ctx1, {
             type: 'bar',
@@ -101,7 +107,24 @@
                 labels: usernames,
                 datasets:[{
                     label: 'Revenue by Admin',
-                    data:[10,5,3,1]
+                    data: revenue,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
                 }]
             },
             options:{
@@ -109,16 +132,113 @@
             }
         })
     }
+
+    async function RevenueByUsers(){    
+        let rentals = await getRentals()
+        console.log(rentals)
+
+        let users = await getUsers()
+        console.log(users)
+        let admins = users.results.filter((user) => user.role == "user")
+
+        let values = []
+        let revenue = []
+        for(let i=0;i<admins.length;i++){
+            values[i]=0
+            revenue[i]=0
+        }
+        let usernames = []
+        let prezzoFinale = 0
+        for(let i=0;i<admins.length;i++){
+            usernames.push(admins[i].username)
+            for(let j=0;j<rentals.length;j++){
+                if(admins[i].username==rentals[j].user.username){
+                    prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) + Number(rentals[j].surcharge.$numberDecimal)
+                    values[i]++
+                    revenue[i]=revenue[i]+prezzoFinale //price-sconto-loyalty+surcharge
+                }
+            }
+        }
+        console.log(values)
+        console.log(usernames)
+        console.log(typeof usernames)
+        
+
+        const ctx1 = document.getElementById('Rentals').getContext('2d');
+        const ctx2 = document.getElementById('Revenue').getContext('2d');
+       
+        const adminsRentals = new Chart(ctx1, {
+            type: 'bar',
+            data:{
+                labels: usernames,
+                datasets:[{
+                    label: 'Rentals by Admin',
+                    data: values,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options:{
+                responsive: false
+            }
+        })
+        const adminRentals = new Chart(ctx2, {
+            type: 'bar',
+            data:{
+                labels: usernames,
+                datasets:[{
+                    label: 'Revenue by Admin',
+                    data: revenue,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options:{
+                responsive: false
+            }
+        })
+    }
+
 </script>
 <div class="divButtons" use:foucus>
-    <button class="selettori" on:click={getRentals}>getRentals</button> <!--Clienti-->
-    <button class="selettori" on:click={RevenueByAdmin}>RevenueByAdmin</button> <!--Dipendenti-->
+    <button class="selettori" on:click={RevenueByUsers}>Users</button> <!--Clienti-->
+    <button class="selettori" on:click={RevenueByAdmin}>Admin</button> <!--Dipendenti-->
     <button class="selettori">Prodotti</button>
     <button class="selettori">Noleggi</button>
 </div>
 <div class="grafici">
-    <canvas id="adminRentals" width="400" height="400"></canvas>
-    <canvas id="adminRevenue" width="400" height="400"></canvas>
+    <canvas id="Rentals" width="400" height="400"></canvas>
+    <canvas id="Revenue" width="400" height="400"></canvas>
 </div>
 <style>
     .divButtons{
