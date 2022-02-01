@@ -3,7 +3,9 @@
 	import Login from "./login.svelte"
 	import Logout from "./logout.svelte"
 	import Stats from "./statistiche.svelte"
-	import Users from "./users.svelte"
+	import AddUsers from "./addUser.svelte"
+	import PatchUsers from "./patchUser.svelte"
+
 	function home(){
 		navigate("/")
 		location.reload()
@@ -11,17 +13,20 @@
 </script>
 
 <Router>
+
 	<header>
 		<button class="home" on:click="{home}">
 			<i class="mi mi-home"><span class="u-sr-only">Home</span></i>
 		</button>
 		{#if localStorage.getItem("id")!=undefined && localStorage.getItem("role")=="manager"}
 		<p class="accName">Welcome {localStorage.getItem("username")}!</p>
+		
 		<a href='statistiche' class='link' use:link>Statistiche</a>
-		<a href='users' class='link' use:link>Gestione Utenti</a>
+		<a href='add' class='link' use:link>Add User</a>
+		<a href='patch' class='link' use:link>Patch User</a>
 		<a href='/' class='link'>BackOffice</a>
 		<!--
-			CENTRARE I QUESTI 3 <a> 
+			CENTRARE I QUESTI 4 <a> 
 		-->
 		<a href='logout' class='outbutton' use:link id="logOut">LogOut</a>
 		{:else}
@@ -42,8 +47,12 @@
 			<Stats />
 		</Route>
 
-		<Route path="users">
-			<Users />
+		<Route path="add">
+			<AddUsers />
+		</Route>
+
+		<Route path="patch">
+			<PatchUsers />
 		</Route>
 		
 		<Route path="logout">
@@ -52,6 +61,7 @@
 		
 	</main>
 </Router>
+
 <style>
 	header{
 		display: flex;

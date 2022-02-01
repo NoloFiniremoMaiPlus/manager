@@ -1,8 +1,4 @@
 <script>
-	import Clienti from "./clienti.svelte"
-	import Inventario from "./inventario.svelte"
-	import Noleggi from "./noleggi.svelte"
-	import Dipendenti from "./dipendenti.svelte"
     import {api} from "./store.js"
     import { useFocus, Router, Route, link, navigate } from "svelte-navigator";
     import Chart from 'chart.js/auto';
@@ -18,6 +14,11 @@
             grafici[i].style.display="none"
         }
     }
+
+    async function getItems(){
+
+    }
+    
     async function getUsers(){
         const res = await fetch(api+'/users', { 
 			method: 'GET',
@@ -44,7 +45,7 @@
         return json.results
     }
 
-    async function RevenueByAdmin(){    
+    async function GraphsAdmin(){    
 
         resetGraph()
         
@@ -67,7 +68,7 @@
             usernames.push(admins[i].username)
             for(let j=0;j<rentals.length;j++){
                 if(admins[i].username==rentals[j].resp.username){
-                    prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) + Number(rentals[j].surcharge.$numberDecimal)
+                    prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) //+ Number(rentals[j].surcharge.$numberDecimal)
                     values[i]++
                     revenue[i]=revenue[i]+prezzoFinale //price-sconto-loyalty+surcharge
                 }
@@ -146,7 +147,7 @@
         })
     }
 
-    async function RevenueByUsers(){   
+    async function GraphsUsers(){   
         
         resetGraph()
         
@@ -169,7 +170,7 @@
             usernames.push(admins[i].username)
             for(let j=0;j<rentals.length;j++){
                 if(admins[i].username==rentals[j].user.username){
-                    prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) + Number(rentals[j].surcharge.$numberDecimal)
+                    prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) //+ Number(rentals[j].surcharge.$numberDecimal)
                     values[i]++
                     revenue[i]=revenue[i]+prezzoFinale //price-sconto-loyalty+surcharge
                 }
@@ -191,7 +192,7 @@
             data:{
                 labels: usernames,
                 datasets:[{
-                    label: 'Rentals by Admin',
+                    label: 'Rentals by Users',
                     data: values,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -221,7 +222,7 @@
             data:{
                 labels: usernames,
                 datasets:[{
-                    label: 'Revenue by Admin',
+                    label: 'Revenue by Users',
                     data: revenue,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -248,11 +249,22 @@
         })
     }
 
+    async function GraphsItems(){
+
+        resetGraph()
+
+        let rentals = await getRentals()
+        console.log(rentals)
+
+        let items= await getItems()
+
+    }
+
 </script>
 <div class="divButtons" use:foucus>
-    <button class="selettori" on:click={RevenueByUsers}>Users</button> <!--Clienti-->
-    <button class="selettori" on:click={RevenueByAdmin}>Admin</button> <!--Dipendenti-->
-    <button class="selettori">Prodotti</button>
+    <button class="selettori" on:click={GraphsUsers}>Clienti</button> <!--Clienti-->
+    <button class="selettori" on:click={GraphsAdmin}>Dipendenti</button> <!--Dipendenti-->
+    <button class="selettori" on:click={GraphsItems}>Prodotti</button>
     <button class="selettori">Noleggi</button>
 </div>
 <div class="grafici">
@@ -260,6 +272,8 @@
     <canvas class="graph" id="adminRevenue" width="400" height="400"></canvas>
     <canvas class="graph" id="userRentals" width="400" height="400"></canvas>
     <canvas class="graph" id="userRevenue" width="400" height="400"></canvas>
+    <canvas class="graph" id="itemsRentals" width="400" height="400"></canvas>
+    <canvas class="graph" id="itemsRevenue" width="400" height="400"></canvas>
 </div>
 <style>
     .divButtons{
