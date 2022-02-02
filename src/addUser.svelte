@@ -1,7 +1,9 @@
 <script>
     import {api} from "./store.js"
+    import {useFocus} from "svelte-navigator";
+    const foucus = useFocus(); //accessibility
     let nome, cognome, username, email, telefono, password, role
-    let result=""
+
     async function submit(){
         const res = await fetch(api+'/users', { 
 			method: 'POST',
@@ -23,41 +25,49 @@
         let json = await res.json()
         console.log(json)
         if(res.ok){
-            result = "Utente creato correttamente"
+            window.alert("Utente creato correttamente")
+            let red = document.getElementsByClassName("req")
+            console.log(red)
+            for(let i=0;i<red.length;i++){
+                red[i].style.border = "solid 0.5px #5AEAFB";
+            }
         }else{
-            result = "Error: " + json.code + " " + json.message
+            window.alert( "Error: " + json.code + " " + json.message)
+            let red = document.getElementsByClassName("req")
+            console.log(red)
+            for(let i=0;i<red.length;i++){
+                red[i].style.border = "solid 0.5px #d41800";
+            }
         }
         
         
     }
 </script>
 
-<div class="form">
+<div class="form" use:foucus>
     <h2>Crea un utente</h2>
-    <label>Nome: <br> <input type="text" placeholder="Mario" bind:value={nome}/></label>
+    <label>Nome: <br> <input type="text" class="req" placeholder="Mario" bind:value={nome} required/></label>
     
-    <label>Cognome: <br> <input type="text" placeholder="Rossi" bind:value={cognome}/></label>
+    <label>Cognome: <br> <input type="text" class="req" placeholder="Rossi" bind:value={cognome} required/></label>
     
-    <label>Username: <br> <input type="text" placeholder="MarioRed" bind:value={username}/></label>
+    <label>Username: <br> <input type="text" class="req" placeholder="MarioRed" bind:value={username} required/></label>
     
-    <label>E-mail: <br> <input type="email" placeholder="mario.rossi@example.com" bind:value={email}/></label>
+    <label>E-mail: <br> <input type="email" class="req" placeholder="mario.rossi@example.com" bind:value={email} required/></label>
     
     <label>Telefono: <br> <input type="tel" placeholder="3891234567" bind:value={telefono}/></label>
     
-    <label>Password: <br> <input type="password" placeholder="passwordMario4567!" bind:value={password}/></label>
+    <label>Password: <br> <input type="password" class="req" placeholder="passwordMario4567!" bind:value={password} required/></label>
     
     <label>
         Role:
         <select bind:value={role}>
-            <option value="manager" >Manager</option>
-            <option value="admin" >Admin</option>
             <option value="user" >User</option>
+            <option value="admin" >Admin</option>
+            <option value="manager" >Manager</option>
         </select>
     </label>
     
     <button on:click={submit}><b>Invia</b></button>
-    
-    <p>{result}</p>
 </div>
 
 <style>
@@ -67,7 +77,7 @@
 		color: #5AEAFB;
 	}
     .form{
-        margin-top: 5%;
+        margin-top: 4%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -81,5 +91,13 @@
     }
     button:hover{
         background-color: lightskyblue;
+    }
+    .form input{
+        margin-top: 1%;
+        border: solid 0.5px #5AEAFB;
+    }
+    .form select{
+        margin-top: 1%;
+        border: solid 0.5px #5AEAFB;
     }
 </style>
