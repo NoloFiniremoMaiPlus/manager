@@ -16,7 +16,16 @@
     }
 
     async function getItems(){
-
+        const res = await fetch(api+'/items', { 
+			method: 'GET',
+			headers: {
+				'Accept': 'application/json',
+      			'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem("accessToken"),
+			},
+		})
+        let json = await res.json()
+        return json
     }
     
     async function getUsers(){
@@ -67,7 +76,7 @@
         for(let i=0;i<admins.length;i++){
             usernames.push(admins[i].username)
             for(let j=0;j<rentals.length;j++){
-                if(admins[i].username==rentals[j].resp.username){
+                if(usernames[i]==rentals[j].resp.username){
                     prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) //+ Number(rentals[j].surcharge.$numberDecimal)
                     values[i]++
                     revenue[i]=revenue[i]+prezzoFinale //price-sconto-loyalty+surcharge
@@ -76,15 +85,13 @@
         }
         console.log(values)
         console.log(usernames)
-        console.log(typeof usernames)
         
-
         const ctx1 = document.getElementById('adminRentals').getContext('2d');
         const ctx2 = document.getElementById('adminRevenue').getContext('2d');
 
-        document.getElementById("adminRentals").style.display="block"
-        document.getElementById("adminRevenue").style.display="block"
-       
+        document.getElementById("adminRentals").style.display="flex"
+        document.getElementById("adminRevenue").style.display="flex"
+
         const adminsRentals = new Chart(ctx1, {
             type: 'bar',
             data:{
@@ -115,7 +122,8 @@
                 responsive: false
             }
         })
-        const adminRentals = new Chart(ctx2, {
+
+        const adminsRevenue = new Chart(ctx2, {
             type: 'bar',
             data:{
                 labels: usernames,
@@ -169,7 +177,7 @@
         for(let i=0;i<admins.length;i++){
             usernames.push(admins[i].username)
             for(let j=0;j<rentals.length;j++){
-                if(admins[i].username==rentals[j].user.username){
+                if(usernames[i]==rentals[j].user.username){
                     prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) //+ Number(rentals[j].surcharge.$numberDecimal)
                     values[i]++
                     revenue[i]=revenue[i]+prezzoFinale //price-sconto-loyalty+surcharge
@@ -184,10 +192,10 @@
         const ctx1 = document.getElementById('userRentals').getContext('2d');
         const ctx2 = document.getElementById('userRevenue').getContext('2d');
 
-        document.getElementById("userRentals").style.display="block"
-        document.getElementById("userRevenue").style.display="block"
+        document.getElementById("userRentals").style.display="flex"
+        document.getElementById("userRevenue").style.display="flex"
        
-        const adminsRentals = new Chart(ctx1, {
+        const userRentals = new Chart(ctx1, {
             type: 'bar',
             data:{
                 labels: usernames,
@@ -217,7 +225,7 @@
                 responsive: false
             }
         })
-        const adminRentals = new Chart(ctx2, {
+        const userRevenue = new Chart(ctx2, {
             type: 'bar',
             data:{
                 labels: usernames,
@@ -257,6 +265,100 @@
         console.log(rentals)
 
         let items= await getItems()
+        items = items.results
+        console.log(items)
+
+        let values = []
+        let revenue = []
+        for(let i=0;i<items.length;i++){
+            values[i]=0
+            revenue[i]=0
+        }
+
+        let itemNames = []
+        let prezzoFinale = 0
+
+        for(let i=0;i<items.length;i++){
+            itemNames.push(items[i].name)
+            for(let j=0;j<rentals.length;j++){
+                if(itemNames[i]==rentals[j].item.name){
+                    prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) //+ Number(rentals[j].surcharge.$numberDecimal)
+                    values[i]++
+                    revenue[i]=revenue[i]+prezzoFinale //price-sconto-loyalty+surcharge
+                }
+            }
+        }
+        
+        console.log(values)
+        console.log(revenue)
+
+        const ctx1 = document.getElementById('itemsRentals').getContext('2d');
+        const ctx2 = document.getElementById('itemsRevenue').getContext('2d');
+
+        document.getElementById("itemsRentals").style.display="flex"
+        document.getElementById("itemsRevenue").style.display="flex"
+
+        const itemRentals = new Chart(ctx1, {
+            type: 'bar',
+            data:{
+                labels: itemNames,
+                datasets:[{
+                    label: 'Rentals by Item',
+                    data: values,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options:{
+                responsive: false
+            }
+        })
+
+        const itemRevenue = new Chart(ctx2, {
+            type: 'bar',
+            data:{
+                labels: itemNames,
+                datasets:[{
+                    label: 'Revenue by Item',
+                    data: revenue,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options:{
+                responsive: false
+            }
+        })
 
     }
 
@@ -297,7 +399,7 @@
         width: 100%;
         height: 40%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
