@@ -26,6 +26,7 @@
         console.log(res)
         console.log(users)
     }
+    
     window.onload = load()
 
     async function showUser(){

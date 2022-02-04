@@ -98,6 +98,28 @@
         document.getElementById("adminRentalsdou").style.display="flex"
         document.getElementById("adminRevenuedou").style.display="flex"
 
+        let colors1=[]
+        //let colors1hover=[]
+        let colors2=[]
+        //let colors2hover=[]
+        let x,y,z
+        for(let i=0;i<usernames.length;i++){
+            x = Math.floor(Math.random() * 256)
+            y = 100+ Math.floor(Math.random() * 256)
+            z = 50+ Math.floor(Math.random() * 256)
+            colors1.push("rgb(" + x + "," + y + "," + z + ",1)")
+            //colors1hover.push("rgb(" + x + "," + y + "," + z + ",1)")
+
+            x = Math.floor(Math.random() * 256)
+            y = 100+ Math.floor(Math.random() * 256)
+            z = 50+ Math.floor(Math.random() * 256)
+            colors2.push("rgb(" + x + "," + y + "," + z + ",1)")
+            //colors2hover.push("rgb(" + x + "," + y + "," + z + ",1)")
+        }
+        console.log(colors1)
+        console.log(colors2)
+
+
         const adminsRentals = new Chart(ctx1, {
             type: 'bar',
             data:{
@@ -105,22 +127,8 @@
                 datasets:[{
                     label: 'Rentals by Admin',
                     data: values,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors1,
+                    hoverBackgroundColor: colors1,
                     borderWidth: 1
                 }]
             },
@@ -136,22 +144,8 @@
                 datasets:[{
                     label: 'Revenue by Admin',
                     data: revenue,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors2,
+                    hoverBackgroundColor: colors2,
                     borderWidth: 1
                 }]
             },
@@ -167,22 +161,8 @@
                 datasets:[{
                     label: 'Rentals by Admin',
                     data: values,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors1,
+                    hoverBackgroundColor: colors1,
                     borderWidth: 1
                 }]
             },
@@ -197,22 +177,8 @@
                 datasets:[{
                     label: 'Revenue by Admin',
                     data: revenue,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors2,
+                    hoverBackgroundColor: colors2,
                     borderWidth: 1
                 }]
             },
@@ -266,6 +232,25 @@
         document.getElementById("userRentalsdou").style.display="flex"
         document.getElementById("userRevenuedou").style.display="flex"
        
+        let colors1=[]
+        //let colors1hover=[]
+        let colors2=[]
+        //let colors2hover=[]
+        let x,y,z
+        for(let i=0;i<usernames.length;i++){
+            x = Math.floor(Math.random() * 256)
+            y = 100+ Math.floor(Math.random() * 256)
+            z = 50+ Math.floor(Math.random() * 256)
+            colors1.push("rgb(" + x + "," + y + "," + z + ",1)")
+            //colors1hover.push("rgb(" + x + "," + y + "," + z + ",1)")
+
+            x = Math.floor(Math.random() * 256)
+            y = 100+ Math.floor(Math.random() * 256)
+            z = 50+ Math.floor(Math.random() * 256)
+            colors2.push("rgb(" + x + "," + y + "," + z + ",1)")
+            //colors2hover.push("rgb(" + x + "," + y + "," + z + ",1)")
+        }
+
         const userRentals = new Chart(ctx1, {
             type: 'bar',
             data:{
@@ -273,22 +258,8 @@
                 datasets:[{
                     label: 'Rentals by Users',
                     data: values,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors1,
+                    hoverBackgroundColor: colors1,
                     borderWidth: 1
                 }]
             },
@@ -303,22 +274,8 @@
                 datasets:[{
                     label: 'Revenue by Users',
                     data: revenue,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors2,
+                    hoverBackgroundColor: colors2,
                     borderWidth: 1
                 }]
             },
@@ -333,22 +290,8 @@
                 datasets:[{
                     label: 'Rentals by Users',
                     data: values,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors1,
+                    hoverBackgroundColor: colors1,
                     borderWidth: 1
                 }]
             },
@@ -363,22 +306,8 @@
                 datasets:[{
                     label: 'Revenue by Users',
                     data: revenue,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors2,
+                    hoverBackgroundColor: colors2,
                     borderWidth: 1
                 }]
             },
@@ -433,6 +362,25 @@
         document.getElementById("itemsRentalsdou").style.display="flex"
         document.getElementById("itemsRevenuedou").style.display="flex"
 
+        let colors1=[]
+        //let colors1hover=[]
+        let colors2=[]
+        //let colors2hover=[]
+        let x,y,z
+        for(let i=0;i<itemNames.length;i++){
+            x = Math.floor(Math.random() * 256)
+            y = 100+ Math.floor(Math.random() * 256)
+            z = 50+ Math.floor(Math.random() * 256)
+            colors1.push("rgb(" + x + "," + y + "," + z + ",1)")
+            //colors1hover.push("rgb(" + x + "," + y + "," + z + ",1)")
+
+            x = Math.floor(Math.random() * 256)
+            y = 100+ Math.floor(Math.random() * 256)
+            z = 50+ Math.floor(Math.random() * 256)
+            colors2.push("rgb(" + x + "," + y + "," + z + ",1)")
+            //colors2hover.push("rgb(" + x + "," + y + "," + z + ",1)")
+        }
+
         const itemRentals = new Chart(ctx1, {
             type: 'bar',
             data:{
@@ -440,22 +388,8 @@
                 datasets:[{
                     label: 'Rentals by Item',
                     data: values,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors1,
+                    hoverBackgroundColor: colors1,
                     borderWidth: 1
                 }]
             },
@@ -471,22 +405,8 @@
                 datasets:[{
                     label: 'Revenue by Item',
                     data: revenue,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors2,
+                    hoverBackgroundColor: colors2,
                     borderWidth: 1
                 }]
             },
@@ -502,22 +422,8 @@
                 datasets:[{
                     label: 'Rentals by Item',
                     data: values,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors1,
+                    hoverBackgroundColor: colors1,
                     borderWidth: 1
                 }]
             },
@@ -533,22 +439,8 @@
                 datasets:[{
                     label: 'Revenue by Item',
                     data: revenue,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors2,
+                    hoverBackgroundColor: colors2,
                     borderWidth: 1
                 }]
             },
@@ -625,6 +517,26 @@
         document.getElementById("activeRentalsByDate").style.display="flex"
         document.getElementById("rentalRevenueByDate").style.display="flex"
 
+        let colors1=[]
+        //let colors1hover=[]
+        let colors2
+        //let colors2hover
+        let x,y,z
+        
+        for(let i=0;i<ids.length;i++){
+            x = Math.floor(Math.random() * 256)
+            y = 100+ Math.floor(Math.random() * 256)
+            z = 50+ Math.floor(Math.random() * 256)
+            colors1.push("rgb(" + x + "," + y + "," + z + ",1)")
+            //colors1hover.push("rgb(" + x + "," + y + "," + z + ",1)")
+        }
+
+        x = Math.floor(Math.random() * 256)
+        y = 100+ Math.floor(Math.random() * 256)
+        z = 50+ Math.floor(Math.random() * 256)
+        colors2="rgb(" + x + "," + y + "," + z + ",1)"
+        //colors2hover="rgb(" + x + "," + y + "," + z + ",1)"
+
         const revenueRentalsdou = new Chart(ctx1, {
             type: 'doughnut',
             data:{
@@ -632,22 +544,8 @@
                 datasets:[{
                     label: 'Revenue by each Rental',
                     data: revenue,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors1,
+                    hoverBackgroundColor: colors1,
                     borderWidth: 1
                 }]
             },
@@ -655,6 +553,7 @@
                 responsive: false
             }
         })
+
         const revenueRentalsbar = new Chart(ctx2, {
             type: 'bar',
             data:{
@@ -662,22 +561,8 @@
                 datasets:[{
                     label: 'Revenue by each Rental',
                     data: revenue,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors1,
+                    hoverBackgroundColor: colors1,
                     borderWidth: 1
                 }]
             },
@@ -685,57 +570,6 @@
                 responsive: false
             }
         })
-        
-        /*const data = {
-            labels: labels,
-            datasets: [
-                {
-                label: 'Dataset 1',
-                data: Utils.numbers(NUMBER_CFG),
-                borderColor: Utils.CHART_COLORS.red,
-                backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-                },
-                {
-                label: 'Dataset 2',
-                data: Utils.numbers(NUMBER_CFG),
-                borderColor: Utils.CHART_COLORS.blue,
-                backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
-                }
-            ]
-        }
-        */
-        
-        /*const x = new Chart(ctx1, {
-            type: 'bar',
-            data:{
-                labels: ids,
-                datasets:[{
-                    label: 'Revenue by each Rental',
-                    data: revenue,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options:{
-                responsive: false
-            }
-        })
-        */
 
         const rentalRevenueByDate = new Chart(ctx3, {
             type: 'line',
@@ -744,22 +578,8 @@
                 datasets:[{
                     label: 'Rentals Revenue by Date',
                     data: revenueOnDate,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors2,
+                    hoverBackgroundColor: colors2,
                     borderWidth: 1
                 }]
             },
@@ -775,22 +595,10 @@
                 datasets:[{
                     label: 'Rentals by Date',
                     data: rentalsOnDate,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: colors2,
+                    hoverBackgroundColor: colors2,
+                    fill: true,
+                    tension: 0.1,
                     borderWidth: 1
                 }]
             },
