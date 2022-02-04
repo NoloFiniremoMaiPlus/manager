@@ -1,13 +1,10 @@
 <script>
     import {api} from "./store.js"
-    import { useFocus, Router, Route, link, navigate } from "svelte-navigator";
+    import { useFocus} from "svelte-navigator";
     import Chart from 'chart.js/auto';
 
-    
 
 	const foucus = useFocus(); //accessibility
-
-    
 
     function resetGraph(){
 
@@ -61,32 +58,29 @@
         resetGraph()
         
         let rentals = await getRentals()
-        console.log(rentals)
-
+    
         let users = await getUsers()
-        console.log(users)
         let admins = users.results.filter((user) => user.role != "user")
 
         let values = []
         let revenue = []
+
         for(let i=0;i<admins.length;i++){
             values[i]=0
             revenue[i]=0
         }
+
         let usernames = []
-        let prezzoFinale = 0
+
         for(let i=0;i<admins.length;i++){
             usernames.push(admins[i].username)
             for(let j=0;j<rentals.length;j++){
                 if(usernames[i]==rentals[j].resp.username){
-                    prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) //+ Number(rentals[j].surcharge.$numberDecimal)
                     values[i]++
-                    revenue[i]=revenue[i]+prezzoFinale //price-sconto-loyalty+surcharge
+                    revenue[i]=revenue[i] + rentals[j].total 
                 }
             }
         }
-        console.log(values)
-        console.log(usernames)
         
         const ctx1 = document.getElementById('adminRentals').getContext('2d');
         const ctx2 = document.getElementById('adminRevenue').getContext('2d');
@@ -116,8 +110,6 @@
             colors2.push("rgb(" + x + "," + y + "," + z + ",1)")
             //colors2hover.push("rgb(" + x + "," + y + "," + z + ",1)")
         }
-        console.log(colors1)
-        console.log(colors2)
 
 
         const adminsRentals = new Chart(ctx1, {
@@ -193,10 +185,10 @@
         resetGraph()
         
         let rentals = await getRentals()
-        console.log(rentals)
+        
 
         let users = await getUsers()
-        console.log(users)
+        
         let admins = users.results.filter((user) => user.role == "user")
 
         let values = []
@@ -205,23 +197,19 @@
             values[i]=0
             revenue[i]=0
         }
+
         let usernames = []
-        let prezzoFinale = 0
+        
         for(let i=0;i<admins.length;i++){
             usernames.push(admins[i].username)
             for(let j=0;j<rentals.length;j++){
                 if(usernames[i]==rentals[j].user.username){
-                    prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) //+ Number(rentals[j].surcharge.$numberDecimal)
                     values[i]++
-                    revenue[i]=revenue[i]+prezzoFinale //price-sconto-loyalty+surcharge
+                    revenue[i]=revenue[i]+rentals[j].total
                 }
             }
         }
-        console.log(values)
-        console.log(usernames)
-        console.log(typeof usernames)
         
-
         const ctx1 = document.getElementById('userRentals').getContext('2d');
         const ctx2 = document.getElementById('userRevenue').getContext('2d');
         const ctx3 = document.getElementById('userRentalsdou').getContext('2d');
@@ -322,11 +310,11 @@
         resetGraph()
 
         let rentals = await getRentals()
-        console.log(rentals)
+        
 
         let items= await getItems()
         items = items.results
-        console.log(items)
+        
 
         let values = []
         let revenue = []
@@ -336,21 +324,18 @@
         }
 
         let itemNames = []
-        let prezzoFinale = 0
+        
 
         for(let i=0;i<items.length;i++){
             itemNames.push(items[i].name)
             for(let j=0;j<rentals.length;j++){
                 if(itemNames[i]==rentals[j].item.name){
-                    prezzoFinale = Number(rentals[j].price.$numberDecimal) - Number(rentals[j].discount.$numberDecimal) - Number(rentals[j].loyalty) //+ Number(rentals[j].surcharge.$numberDecimal)
                     values[i]++
-                    revenue[i]=revenue[i]+prezzoFinale //price-sconto-loyalty+surcharge
+                    revenue[i]=revenue[i]+rentals[j].total
                 }
             }
         }
         
-        console.log(values)
-        console.log(revenue)
 
         const ctx1 = document.getElementById('itemsRentals').getContext('2d');
         const ctx2 = document.getElementById('itemsRevenue').getContext('2d');
@@ -456,7 +441,6 @@
         resetGraph()
         
         let rentals = await getRentals()
-        console.log(rentals)
 
         let ids=[]
         let names=[]
@@ -464,7 +448,7 @@
         let revenue=[]
         let rentalsOnDate=[]
         let revenueOnDate=[]
-        //let abc=[1,2,3]
+        
         
 
         for(let i=0;i<rentals.length;i++){
@@ -482,9 +466,7 @@
         }
 
         dates.sort()
-        console.log(dates)
-        console.log(ids)
-        console.log(revenue)
+        
 
         for(let i=0;i<dates.length;i++){
             rentalsOnDate[i] = 0
@@ -496,16 +478,7 @@
                 }
             }
         }
-        console.log(revenueOnDate)
-
-        /*
-        for(let i=0;i<rentals.length;i++){
-            dates[i].push(rentals[i].from)
-        }
-        for(let i=0;i<rentals.length;i++){
-            dates[i].push(rentals[i].to)
-        }
-        */
+        
 
         const ctx1 = document.getElementById('revenueRentalsdou').getContext('2d');
         const ctx2 = document.getElementById('revenueRentalsbar').getContext('2d');

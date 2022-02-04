@@ -7,7 +7,7 @@
 	import PatchUsers from "./patchUser.svelte"
 
 	function home(){
-		navigate("/")
+		navigate("https://site202132.tw.cs.unibo.it/manager")
 		location.reload()
 	}
 </script>
@@ -24,7 +24,7 @@
 		<a href='statistiche' class='link' use:link>Statistiche</a>
 		<a href='add' class='link' use:link>Add User</a>
 		<a href='patch' class='link' use:link>Patch User</a>
-		<a href='/' class='link'>BackOffice</a>
+		<a href='https://site202132.tw.cs.unibo.it/office' class='link'>BackOffice</a>
 		<!--
 			CENTRARE I QUESTI 4 <a> 
 		-->
@@ -93,7 +93,7 @@
 		margin-right: 1%;
 		padding: 0.5% 0.5%;
 		color: black;
-		background-color:#5AEAFB; /*per il logout colore-> #C85662*/
+		background-color:#5AEAFB;
 		border:none;
 		border-radius: 10%;
 	}

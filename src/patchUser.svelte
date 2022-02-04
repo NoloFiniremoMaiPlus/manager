@@ -1,11 +1,10 @@
 <script>
-    //on:change={() => answer = ''}
     import {api} from "./store.js"
     import {useFocus} from "svelte-navigator";
     let nome, cognome, username, email, telefono, loyalty
     let user, users=[], res;
 
-    const foucus = useFocus(); //accessibility
+    const foucus = useFocus();
 
     async function getUsers(){
         const res = await fetch(api+'/users', { 
@@ -17,16 +16,13 @@
 			},
 		})
         let json = await res.json()
-        //console.log(json.results)
         return json
     }
     async function load(){
         res = await getUsers()
         users = res.results
-        console.log(res)
-        console.log(users)
     }
-    
+
     window.onload = load()
 
     async function showUser(){
@@ -58,9 +54,7 @@
                     "loyalty": loyalty
             })
 		})
-        console.log(res)
         let json = await res.json()
-        console.log(json)
         if(res.ok){
             window.alert("Utente aggiornato correttamente")
         }else{

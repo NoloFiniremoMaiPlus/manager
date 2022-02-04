@@ -1,8 +1,8 @@
 <script>
     import {user, api} from "./store.js"
 	import {navigate} from "svelte-navigator"
-	let email = "" //manager@example.com
-	let password = "" //Managerpassword1
+	let email = "" 
+	let password = "" 
 	let result = ""
 	function setStore(){
 		if(user.id!=null){
@@ -15,7 +15,8 @@
 			localStorage.setItem("expiresRefresh",user.expiresRefresh)
 			localStorage.setItem("role",user.role)
 		}
-}
+	}
+	
 	async function doPost () {
 		console.log(JSON.stringify({email,password}))
 		const res = await fetch(api+'/auth/login', { 
@@ -31,9 +32,11 @@
 		})
 		const json = await res.json()
 		result = JSON.stringify(json)
+
         if(res.status==200){
+
             result = "logged in"
-            console.log(json)
+            
             user.id = json.user.id
             user.email = json.user.email
             user.username = json.user.name
@@ -43,8 +46,9 @@
             user.expiresRefresh = json.tokens.refresh.expires
 			user.role = json.user.role
 			setStore()
-			navigate("/")
+			navigate("site202132.tw.cs.unibo.it/manager")
 			location.reload()
+
         }else{
             result = res.statusText
         }
@@ -94,7 +98,7 @@
 	button{
 		font-weight: bold;
 		color: white;
-		background-color:#5AEAFB; /*per il logout colore-> #C85662*/
+		background-color:#5AEAFB;
 		border:none;
 		border-radius: 3px;
 	}

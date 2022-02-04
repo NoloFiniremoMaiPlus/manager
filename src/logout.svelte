@@ -1,6 +1,7 @@
 <script>
     import {api} from "./store.js"
     import {navigate} from "svelte-navigator"
+	
     async function LogOut(){
 		const res = await fetch(api+'/auth/logout', { 
 			method: 'POST',
@@ -12,10 +13,10 @@
 				refreshToken: localStorage.getItem("refreshToken")
 			})
 		})
-		console.log(res.status)
+		
 		if(res.status==204){
 			localStorage.clear()
-			navigate("/")
+			navigate("site202132.tw.cs.unibo.it/manager")
             location.reload()
 		}else{
 			window.alert("Errore durante il logout " + res.status + " " + res.statusText)
@@ -24,7 +25,7 @@
 	}
     
     function noLogOut(){
-        navigate("/")
+        navigate("site202132.tw.cs.unibo.it/manager")
         location.reload()
     }
 
@@ -67,7 +68,7 @@
 	button{
 		font-weight: bold;
 		color: white;
-		background-color:#5AEAFB; /*per il logout colore-> #C85662*/
+		background-color:#5AEAFB;
 		border:none;
 		border-radius: 3px;
 	}

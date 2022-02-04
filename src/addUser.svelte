@@ -1,7 +1,7 @@
 <script>
     import {api} from "./store.js"
     import {useFocus} from "svelte-navigator";
-    const foucus = useFocus(); //accessibility
+    const foucus = useFocus();
     let nome, cognome, username, email, telefono, password, role
 
     async function submit(){
@@ -21,20 +21,20 @@
                     "loyalty": 10
             })
 		})
-        console.log(res)
+        
         let json = await res.json()
-        console.log(json)
+        
         if(res.ok){
             window.alert("Utente creato correttamente")
             let red = document.getElementsByClassName("req")
-            console.log(red)
+            
             for(let i=0;i<red.length;i++){
                 red[i].style.border = "solid 0.5px #5AEAFB";
             }
         }else{
             window.alert( "Error: " + json.code + " " + json.message)
             let red = document.getElementsByClassName("req")
-            console.log(red)
+            
             for(let i=0;i<red.length;i++){
                 red[i].style.border = "solid 0.5px #d41800";
             }
@@ -60,7 +60,7 @@
     
     <label>
         Role:
-        <select bind:value={role}>
+        <select bind:value={role} required>
             <option value="user" >User</option>
             <option value="admin" >Admin</option>
             <option value="manager" >Manager</option>
