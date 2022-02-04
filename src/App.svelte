@@ -26,16 +26,15 @@
 		<a href='/manager/add' class='link' use:link>Add User</a>
 		<a href='/manager/patch' class='link' use:link>Patch User</a>
 		<a href='{url}/office' class='link'>BackOffice</a>
-		<!--
-			CENTRARE I QUESTI 4 <a> 
-		-->
 		<a href='/manager/logout' class='outbutton' use:link id="logOut">LogOut</a>
 		{:else}
-		{#if localStorage.getItem("id")!=undefined && localStorage.getItem("role")!="manager"}
-		<p class="accName">LogIn effettuato con un account non manager.</p>
-		<a href='/manager/logout' class='outbutton' use:link id="logOut">LogOut</a>
+			{#if localStorage.getItem("id")!=undefined && localStorage.getItem("role")!="manager"}
+			<p class="accName">LogIn effettuato con un account non manager.</p>
+			<a href='/manager/logout' class='outbutton' use:link id="logOut">LogOut</a>
+			{/if}
 		{/if}
-		<a href='/manager/login' class='logbutton' use:link id="logIn">LogIn</a>
+		{#if localStorage.getItem("id")==undefined}
+			<a href='/manager/login' class='logbutton' use:link id="logIn">LogIn</a>
 		{/if}
 	</header>
 	<main>
