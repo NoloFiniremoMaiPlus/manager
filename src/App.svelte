@@ -5,9 +5,10 @@
 	import Stats from "./statistiche.svelte"
 	import AddUsers from "./addUser.svelte"
 	import PatchUsers from "./patchUser.svelte"
+	import {url, api} from "./store.js" 
 
 	function home(){
-		navigate("https://site202132.tw.cs.unibo.it/manager")
+		navigate(url + "/manager")
 		location.reload()
 	}
 </script>
@@ -21,41 +22,41 @@
 		{#if localStorage.getItem("id")!=undefined && localStorage.getItem("role")=="manager"}
 		<p class="accName">Welcome {localStorage.getItem("username")}!</p>
 		
-		<a href='statistiche' class='link' use:link>Statistiche</a>
-		<a href='add' class='link' use:link>Add User</a>
-		<a href='patch' class='link' use:link>Patch User</a>
-		<a href='https://site202132.tw.cs.unibo.it/office' class='link'>BackOffice</a>
+		<a href='/manager/statistiche' class='link' use:link>Statistiche</a>
+		<a href='/manager/add' class='link' use:link>Add User</a>
+		<a href='/manager/patch' class='link' use:link>Patch User</a>
+		<a href='{url}/office' class='link'>BackOffice</a>
 		<!--
 			CENTRARE I QUESTI 4 <a> 
 		-->
-		<a href='logout' class='outbutton' use:link id="logOut">LogOut</a>
+		<a href='/manager/logout' class='outbutton' use:link id="logOut">LogOut</a>
 		{:else}
 		{#if localStorage.getItem("id")!=undefined && localStorage.getItem("role")!="manager"}
 		<p class="accName">LogIn effettuato con un account non manager.</p>
-		<a href='logout' class='outbutton' use:link id="logOut">LogOut</a>
+		<a href='/manager/logout' class='outbutton' use:link id="logOut">LogOut</a>
 		{/if}
-		<a href='login' class='logbutton' use:link id="logIn">LogIn</a>
+		<a href='/manager/login' class='logbutton' use:link id="logIn">LogIn</a>
 		{/if}
 	</header>
 	<main>
 		
-		<Route path="login">
+		<Route path="/manager/login">
 			<Login />
 		</Route>
 		
-		<Route path="statistiche">
+		<Route path="/manager/statistiche">
 			<Stats />
 		</Route>
 
-		<Route path="add">
+		<Route path="/manager/add">
 			<AddUsers />
 		</Route>
 
-		<Route path="patch">
+		<Route path="/manager/patch">
 			<PatchUsers />
 		</Route>
 		
-		<Route path="logout">
+		<Route path="/manager/logout">
 			<Logout />
 		</Route>
 		

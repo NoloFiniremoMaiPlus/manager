@@ -1,5 +1,5 @@
 <script>
-    import {api} from "./store.js"
+    import {url, api} from "./store.js"
     import {navigate} from "svelte-navigator"
 	
     async function LogOut(){
@@ -16,8 +16,8 @@
 		
 		if(res.status==204){
 			localStorage.clear()
-			navigate("site202132.tw.cs.unibo.it/manager")
-            location.reload()
+			navigate(url+"/manager")
+			location.reload()
 		}else{
 			window.alert("Errore durante il logout " + res.status + " " + res.statusText)
 		}
@@ -25,7 +25,7 @@
 	}
     
     function noLogOut(){
-        navigate("site202132.tw.cs.unibo.it/manager")
+        navigate(url+"/manager")
         location.reload()
     }
 

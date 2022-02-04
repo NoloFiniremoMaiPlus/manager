@@ -1,5 +1,5 @@
 <script>
-    import {user, api} from "./store.js"
+    import {user, url, api} from "./store.js"
 	import {navigate} from "svelte-navigator"
 	let email = "" 
 	let password = "" 
@@ -46,7 +46,7 @@
             user.expiresRefresh = json.tokens.refresh.expires
 			user.role = json.user.role
 			setStore()
-			navigate("site202132.tw.cs.unibo.it/manager")
+			navigate(url+"/manager")
 			location.reload()
 
         }else{
