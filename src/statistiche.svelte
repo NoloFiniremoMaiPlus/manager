@@ -457,11 +457,11 @@
             names.push(rentals[i].item.name)
             revenue.push(rentals[i].total)
 
-            if(!dates.includes(rentals[i].from)){
-                dates.push(rentals[i].from)
+            if(!dates.includes(rentals[i].from.slice(0,10))){
+                dates.push(rentals[i].from.slice(0,10))
             }
-            if(!dates.includes(rentals[i].to)){
-                dates.push(rentals[i].to)
+            if(!dates.includes(rentals[i].to.slice(0,10))){
+                dates.push(rentals[i].to.slice(0,10))
             }
         }
 
@@ -472,7 +472,7 @@
             rentalsOnDate[i] = 0
             revenueOnDate[i] = 0
             for(let j=0;j<rentals.length;j++){
-                if(dates[i]>=rentals[j].from && dates[i]<=rentals[j].to){
+                if(dates[i]>=rentals[j].from.slice(0,10) && dates[i]<=rentals[j].to.slice(0,10)){
                     rentalsOnDate[i]++
                     revenueOnDate[i]= revenueOnDate[i] + rentals[j].total 
                 }
@@ -513,7 +513,7 @@
         const revenueRentalsdou = new Chart(ctx1, {
             type: 'doughnut',
             data:{
-                labels: ids,
+                labels: names,
                 datasets:[{
                     label: 'Revenue by each Rental',
                     data: revenue,

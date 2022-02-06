@@ -99,6 +99,9 @@
 		text-align: center;
 		color: #5AEAFB;
 	}
+    label{
+        text-align: center;
+    }
     .selettore{
         margin-top:4%;
         display: flex;

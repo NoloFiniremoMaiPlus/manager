@@ -76,6 +76,9 @@
 		text-align: center;
 		color: #5AEAFB;
 	}
+    label{
+        text-align: center;
+    }
     .form{
         margin-top: 4%;
         display: flex;

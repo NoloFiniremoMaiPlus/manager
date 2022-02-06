@@ -16,17 +16,19 @@
 <Router>
 
 	<header>
+
 		<button class="home" on:click="{home}">
 			<i class="mi mi-home"><span class="u-sr-only">Home</span></i>
 		</button>
 		{#if localStorage.getItem("id")!=undefined && localStorage.getItem("role")=="manager"}
 		<p class="accName">Welcome {localStorage.getItem("username")}!</p>
-		
+	
 		<a href='/manager/statistiche' class='link' use:link>Statistiche</a>
 		<a href='/manager/add' class='link' use:link>Add User</a>
 		<a href='/manager/patch' class='link' use:link>Patch User</a>
 		<a href='{url}/office' class='link'>BackOffice</a>
 		<a href='/manager/logout' class='outbutton' use:link id="logOut">LogOut</a>
+	
 		{:else}
 			{#if localStorage.getItem("id")!=undefined && localStorage.getItem("role")!="manager"}
 			<p class="accName">LogIn effettuato con un account non manager.</p>
@@ -36,6 +38,7 @@
 		{#if localStorage.getItem("id")==undefined}
 			<a href='/manager/login' class='logbutton' use:link id="logIn">LogIn</a>
 		{/if}
+
 	</header>
 	<main>
 		
@@ -66,12 +69,14 @@
 	header{
 		display: flex;
 		flex-direction: row;
-		height: 5%;
+		justify-content: space-evenly;
+		height: 6%;
+		background-color: whitesmoke;
+		
 	}
 	.accName{
 		font-weight: bolder;
 		margin-left: 1%;
-		margin-right: auto;
 		color: black;
 		align-self: center;
 	}
