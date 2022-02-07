@@ -75,10 +75,12 @@
         for(let i=0;i<admins.length;i++){
             usernames.push(admins[i].username)
             for(let j=0;j<rentals.length;j++){
-                if(usernames[i]==rentals[j].resp.username){
-                    values[i]++
-                    revenue[i]=revenue[i] + rentals[j].total 
-                }
+                if(rentals[j].resp.username){
+                    if(usernames[i]==rentals[j].resp.username){
+                        values[i]++
+                        revenue[i]=revenue[i] + rentals[j].total 
+                    }
+                }    
             }
         }
         
