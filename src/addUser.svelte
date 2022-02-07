@@ -97,6 +97,7 @@
     }
     .form input{
         margin-top: 1%;
+        text-align: center;
         border: solid 0.5px #5AEAFB;
     }
     .form select{
