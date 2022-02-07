@@ -36,6 +36,7 @@
 			{/if}
 		{/if}
 		{#if localStorage.getItem("id")==undefined}
+			<p style="margin-left: auto">Effettua il Login</p>
 			<a href='/manager/login' class='logbutton' use:link id="logIn">LogIn</a>
 		{/if}
 
