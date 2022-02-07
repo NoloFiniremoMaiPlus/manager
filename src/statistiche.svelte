@@ -555,6 +555,7 @@
                     data: revenueOnDate,
                     backgroundColor: colors2,
                     hoverBackgroundColor: colors2,
+                    fill: true,
                     borderWidth: 1
                 }]
             },
@@ -573,7 +574,6 @@
                     backgroundColor: colors2,
                     hoverBackgroundColor: colors2,
                     fill: true,
-                    tension: 0.1,
                     borderWidth: 1
                 }]
             },
