@@ -1,7 +1,7 @@
 <script>
     import {api} from "./store.js"
     import {useFocus} from "svelte-navigator";
-    let nome, cognome, username, email, telefono, loyalty, role
+    let nome, cognome, username, email, telefono, loyalty
     let user, users=[], res;
 
     const foucus = useFocus();
@@ -33,7 +33,6 @@
         email = user.email
         telefono = (user.phone) ? user.phone : ""
         loyalty = user.loyalty
-        role = user.role
 
         document.getElementById("form").style.display="flex"
 
@@ -52,8 +51,7 @@
                     "email": email,
                     "phone": telefono,
                     "password": user.password,
-                    "loyalty": loyalty,
-                    "role": role
+                    "loyalty": loyalty
             })
 		})
         let json = await res.json()
@@ -89,15 +87,6 @@
         <label>Telefono: <br> <input type="tel" bind:value={telefono}/></label>
 
         <label>Loyalty: <br> <input type="number" bind:value={loyalty}/></label>
-
-        <label>
-            Role:
-            <select bind:value={role}>
-                <option value="user" >User</option>
-                <option value="backoffice" >Backoffice</option>
-                <option value="manager" >Manager</option>
-            </select>
-        </label>
 
         <button on:click={patchUser}><b>Patch</b></button>
         
