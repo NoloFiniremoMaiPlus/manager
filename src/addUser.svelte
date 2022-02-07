@@ -62,7 +62,7 @@
         Role:
         <select bind:value={role} required>
             <option value="user" >User</option>
-            <option value="admin" >Admin</option>
+            <option value="backoffice" >Backoffice</option>
             <option value="manager" >Manager</option>
         </select>
     </label>
