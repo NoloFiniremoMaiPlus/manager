@@ -127,7 +127,12 @@
                 }]
             },
             options:{
-                responsive: false
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         })
 
@@ -144,7 +149,12 @@
                 }]
             },
             options:{
-                responsive: false
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         })
 
@@ -254,7 +264,12 @@
                 }]
             },
             options:{
-                responsive: false
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         })
         const userRevenue = new Chart(ctx2, {
@@ -270,7 +285,12 @@
                 }]
             },
             options:{
-                responsive: false
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         })
         const userRentalsdou = new Chart(ctx3, {
@@ -381,7 +401,12 @@
                 }]
             },
             options:{
-                responsive: false
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         })
 
@@ -398,7 +423,12 @@
                 }]
             },
             options:{
-                responsive: false
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         })
 
@@ -542,7 +572,12 @@
                 }]
             },
             options:{
-                responsive: false
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         })
 
@@ -560,7 +595,12 @@
                 }]
             },
             options:{
-                responsive: false
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         })
 
@@ -578,7 +618,12 @@
                 }]
             },
             options:{
-                responsive: false
+                responsive: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
             }
         })
 
