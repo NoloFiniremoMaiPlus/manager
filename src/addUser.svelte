@@ -2,24 +2,27 @@
     import {api} from "./store.js"
     import {useFocus} from "svelte-navigator";
     const foucus = useFocus();
-    let nome, cognome, username, email, password, role
-    let telefono = ""
+    let nome, cognome, username, email, password, role, telefono
+    
     async function submit(){
+        var data = JSON.stringify({
+                    "name": nome,
+                    "surname": cognome,
+                    "username": username,
+                    "password": password,
+                    "email": email,
+                    "role": role,
+                    "loyalty": 10
+                    })
+        if(telefono)
+            data.telefono = telefono;
+
         const res = await fetch(api+'/users', { 
 			method: 'POST',
 			headers: {
       			'Content-Type': 'application/json',
                 'Authorization': "Bearer " + localStorage.getItem("accessToken"),
-			},body:JSON.stringify({
-                    "name": nome,
-                    "surname": cognome,
-                    "username": username,
-                    "email": email,
-                    "phone": telefono,
-                    "password": password,
-                    "role": role,
-                    "loyalty": 10
-            })
+			},body:data,
 		})
         
         let json = await res.json()
