@@ -2,8 +2,8 @@
     import {api} from "./store.js"
     import {useFocus} from "svelte-navigator";
     const foucus = useFocus();
-    let nome, cognome, username, email, telefono, password, role
-
+    let nome, cognome, username, email, password, role
+    let telefono = ""
     async function submit(){
         const res = await fetch(api+'/users', { 
 			method: 'POST',
